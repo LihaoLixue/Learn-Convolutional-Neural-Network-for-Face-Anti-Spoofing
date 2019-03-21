@@ -8,7 +8,8 @@ interpolation = cv2.INTER_CUBIC
 borderMode = cv2.BORDER_REPLICATE
 
 def crop_face(img, bbox, crop_sz, bbox_ext, extra_pad=0):
-    shape = img.shape # [height, width, channels]
+    shape = img.shape
+    # [height, width, channels]
     x, y, w, h = bbox
 
     jitt_pad = int(ceil(float(extra_pad) * min(w, h) / crop_sz))
@@ -36,12 +37,13 @@ def crop_face(img, bbox, crop_sz, bbox_ext, extra_pad=0):
 
 
 def process_db_casia(db_dir, save_dir, scale, crop_sz):
-    for video_dir in glob('%s/*/*/*' % db_dir):
+    for video_dir in glob(r'%s/*/*/*/*/' % db_dir):
         print("processing(scale %f): %s" % (scale, video_dir))
         cur_save_dir = save_dir + '/' + video_dir[len(db_dir)+1:]
+        print("cur_save_dir:  "+cur_save_dir)
         if not os.path.exists(cur_save_dir):
             os.makedirs(cur_save_dir)
-        for frame_name in glob('%s/frames/*.jpg' % video_dir):
+        for frame_name in glob(r'%s0000045/*.jpg' % video_dir):
             frame_idx = frame_name.split('/')[-1].split('.')[0]
             with open('%s/bboxes/%s.txt' % (video_dir, frame_idx), 'r') as bbox_f:
                 bbox = map(int, bbox_f.readline().split())
@@ -55,13 +57,15 @@ def process_db_casia(db_dir, save_dir, scale, crop_sz):
 
 
 def main(argc, argv):
-    db_dir = '../../Data/antispoofing/Frames_Bboxes_Points/casia'
-    save_dir = 'data/casia'
+    # db_dir = '../../Data/antispoofing/Frames_Bboxes_Points/casia'
+    db_dir = 'data1'
+    save_dir = 'data1/casia'
 
     crop_sz = 128
     scales = [1.0, 1.4, 1.8, 2.2, 2.6]
     for scale in scales:
-        cur_save_dir = save_dir + '/scale_' + str(scale)
+        cur_save_dir = save_dir + '\scale_' + str(scale)
+        print(cur_save_dir)
         process_db_casia(db_dir, cur_save_dir, scale, crop_sz)
 
 

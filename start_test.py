@@ -2,11 +2,15 @@ import sys, os, json, cv2
 from glob import glob
 import numpy as np
 import mxnet as mx
+from utils.statistics import get_eer_stats
+from utils.statistics import get_hter_at_thr
 from collections import namedtuple
+#os.chdir('C:\ProgramData\Anaconda3\Lib\site-packages\libsvm\python')
 Batch = namedtuple('Batch', ['data'])
 
-from svmutil import *
-from utils.statistics import get_eer_stats, get_hter_at_thr
+from libsvm.python.svm import *
+from libsvm.python.svmutil import *
+#from svmutil import *
 
 def load_net(experiment_dir):
     config_fname = experiment_dir + '/config.json'

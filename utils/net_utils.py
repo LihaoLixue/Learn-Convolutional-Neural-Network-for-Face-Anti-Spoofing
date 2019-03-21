@@ -1,6 +1,7 @@
 import numpy as np
 import mxnet as mx
 
+
 def get_wd_mult(symbol, multiplier):
     internals = symbol.get_internals()
     arg_names = internals.list_arguments()

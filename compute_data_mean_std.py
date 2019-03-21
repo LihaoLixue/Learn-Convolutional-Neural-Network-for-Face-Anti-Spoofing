@@ -4,10 +4,11 @@ import sys, os, cv2, math, time
 from glob import glob
 import numpy as np
 
+
 def compute_mean_std_casia(db_dir):
     mean_r, mean_g, mean_b = [], [], []
     std_r, std_g, std_b = [], [], []
-    for frame_name in glob("%s/*/*/*.jpg" % (db_dir)):
+    for frame_name in glob("%s/*/*/*/*.jpg" % (db_dir)):
         img = cv2.imread(frame_name)
         mean_r.append(np.mean(img[:,:,2]))
         mean_g.append(np.mean(img[:,:,1]))
@@ -21,7 +22,7 @@ def compute_mean_std_casia(db_dir):
 
 
 def main(argc, argv):
-    db_dir = 'data/casia'
+    db_dir = 'data1/scale'
     scales = [1.0, 1.4, 1.8, 2.2, 2.6]
     for scale in scales:
         print("computing mean-std for scale: %s" % scale)

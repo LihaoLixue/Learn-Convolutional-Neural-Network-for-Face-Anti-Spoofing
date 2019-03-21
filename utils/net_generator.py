@@ -1,6 +1,7 @@
 import sys
 import mxnet as mx
 
+
 def get_alexnet(num_classes):
     data = mx.sym.Variable('data')
     # conv1

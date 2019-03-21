@@ -32,12 +32,14 @@ def start_experiment(cfg):
 def train_net_casia(data_dir, scale, k):
     client_num = 20
     folds_num = 5
-    client_per_fold = client_num / folds_num
+    client_per_fold = int(client_num / folds_num)
+    print(type(client_per_fold))
     list_dir = data_dir + '/mxnet'
     db_dir = data_dir + '/scale_' + str(scale) + '/train_release'
 
     experiment_str = 'scale_' + str(scale) + '__fold_' + str(k)
     # prepare dev data
+    print(k,type(k))
     client_list_dev = [i for i in range((k - 1) * client_per_fold + 1, k * client_per_fold + 1)]
     dev_list_fname = list_dir + '/' + experiment_str + '__dev'
     create_imglist_casia(db_dir, dev_list_fname, False, client_list_dev)
@@ -58,7 +60,7 @@ def train_net_casia(data_dir, scale, k):
 
 
 def main(argc, argv):
-    train_net_casia('data/casia', float(argv[1]), int(argv[2]))
+    train_net_casia('data1/casia', float(argv[1]), int(argv[2]))
 
 
 if __name__ == "__main__":

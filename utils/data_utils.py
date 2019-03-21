@@ -2,6 +2,7 @@ import os
 from glob import glob
 import random
 
+
 def create_record_file(mxnet_path, cwd_path, imglist_fname):
     os.system('python %s/tools/im2rec.py --num-thread=4 --pass-through %s %s' % (mxnet_path, imglist_fname, cwd_path))
 

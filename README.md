@@ -7,7 +7,7 @@ Implementation of "[Learn Convolutional Neural Network for Face Anti-Spoofing](h
 <table>
   <tr>
     <th rowspan="2"></th>
-    <th colspan="6">Scale</th>
+    <th colspan="6">Scale</th>``
   </tr>
   <tr>
     <td>1.0</td>

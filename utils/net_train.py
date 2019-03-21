@@ -1,7 +1,9 @@
 import mxnet as mx
 
-import net_generator
-from net_utils import *
+
+from utils import net_generator
+from utils.net_utils import *
+
 
 def train_net(cfg):
     net = net_generator.get_alexnet(cfg['num_classes'])
